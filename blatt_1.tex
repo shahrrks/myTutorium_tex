@@ -34,6 +34,12 @@
 \newcommand{\tdate}{18. April 2021}
 \newcommand{\myqr}{\qrcode[hyperlink, height = 1cm]{www.github.com/shahrrks}}
 \newcommand\gauss[2]{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))} % Gauss function, parameters mu and sigma
+\newcommand{\drawgraph}{ \begin{tikzpicture}[scale = 1.5]
+	\draw[style = thick, -latex] (-4,0) -- (7,0) node[right] {\( t  \)};
+	\draw[style = thick, -latex](-3,-2) -- (-3,3) node[above]{\( f(x)  \)};
+	\draw[step=.25cm,gray,very thin] (-3.9,-1.9) grid (6.9,2.9);
+
+\end{tikzpicture}}
 %%
 
 \sisetup{
@@ -68,7 +74,7 @@
 		x(t) = 2 + \cos\bigg(\frac{\pi t}{2s} + \pi\bigg)
 		\]
 		
-		\fillwithgrid{3in}
+		\drawgraph
 		
 		\question[5]
 		\[
@@ -76,14 +82,16 @@
 		\]
 		
 		
-		\fillwithgrid{3in}
+		\drawgraph 
 		
 		\newpage
 		\question[5]
 		\[ x(t) = \frac{2}{T}.rect\bigg(\frac{T-T/2}{T/2}\bigg)
 		\]
-		\fillwithgrid{3in}
+		\drawgraph
 		\question[4]
+
+
 		\begin{tikzpicture}
 		\begin{axis}[every axis plot post/.append style={
 			mark=none,domain=-2:3,samples=50,smooth}, % All plots: from -2:2, 50 samples, smooth, no marks

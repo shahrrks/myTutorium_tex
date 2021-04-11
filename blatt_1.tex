@@ -30,14 +30,14 @@
 \colorgrids
 \colorsolutionboxes
 
-%%MACROS 
+%%%%%%%%%%%%%%%%%%%%%%%% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\tdate}{18. April 2021}
 \newcommand{\myqr}{\qrcode[hyperlink, height = 1cm]{www.github.com/shahrrks}}
 \newcommand\gauss[2]{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))} % Gauss function, parameters mu and sigma
 \newcommand{\drawgraph}{ \begin{tikzpicture}[scale = 1.5]
 	\draw[style = thick, -latex] (-4,0) -- (7,0) node[right] {\( t  \)};
 	\draw[style = thick, -latex](-3,-2) -- (-3,3) node[above]{\( f(x)  \)};
-	\draw[step=.25cm,gray,very thin] (-3.9,-1.9) grid (6.9,2.9);
+	\draw[step=.25cm,gray!30,very thin] (-3.9,-1.9) grid (6.9,2.9);
 
 \end{tikzpicture}}
 %%
@@ -89,28 +89,22 @@
 		\[ x(t) = \frac{2}{T}.rect\bigg(\frac{T-T/2}{T/2}\bigg)
 		\]
 		\drawgraph
-		\question[4]
-
-
-		\begin{tikzpicture}
-		\begin{axis}[every axis plot post/.append style={
-			mark=none,domain=-2:3,samples=50,smooth}, % All plots: from -2:2, 50 samples, smooth, no marks
-		axis x line*=bottom, % no box around the plot, only x and y axis
-		axis y line*=left, % the * suppresses the arrow tips
-		enlargelimits=upper] % extend the axes a bit to the right and top
-		\addplot {\gauss{0}{0.5}};
-		\addplot {\gauss{5}{10}};
-		\end{axis}
-		\end{tikzpicture}
 		\question[10]
 		Schreiben sie einen Matlab code, der diese Funktion als ein Plot darstellt. 
 		\makeemptybox{4in}
 		\qrcode[height = 1cm]{https://www.youtube.com/channel/UCiHSFpMlrhxuYAIA52aLu3w}
 		
 		\newpage
-		\question[4]
-		
-		\section*{Mathe 2}
-		
-	\end{questions}
+	
+	\section*{Info2}
+	Boolsche Algebra Übungen (quelle:\url{ocw.mit.edu})
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\linewidth]{bool_algebra}
+	%	\caption{}
+	\label{fig:boolalgebra}
+	\end{figure}
+\qrcode[hyperlink,height = 1cm]{https://github.com/shahrrks/Tutorium-ETIT-4-/blob/main/Formeln_zettel/} \hspace{5cm}
+\qrcode[height = 1cm]{http://web.mit.edu/6.111/www/s2007/PSETS/pset1s.pdf}
+\end{questions}
 \end{document}

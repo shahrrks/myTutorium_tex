@@ -31,13 +31,14 @@
 \colorsolutionboxes
 
 %%%%%%%%%%%%%%%%%%%%%%%% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\tdate}{18. April 2021}
+\newcommand{\tdate}{16. April 2021}
 \newcommand{\myqr}{\qrcode[hyperlink, height = 1cm]{www.github.com/shahrrks}}
 \newcommand\gauss[2]{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))} % Gauss function, parameters mu and sigma
 \newcommand{\drawgraph}{ \begin{tikzpicture}[scale = 1.5]
-	\draw[style = thick, -latex] (-4,0) -- (7,0) node[right] {\( t  \)};
-	\draw[style = thick, -latex](-3,-2) -- (-3,3) node[above]{\( f(x)  \)};
 	\draw[step=.25cm,gray!30,very thin] (-3.9,-1.9) grid (6.9,2.9);
+	\draw[style = thick,black, -latex] (-4,0) -- (7,0) node[right] {\( t  \)};
+	\draw[style = thick,black, -latex](-3,-2) -- (-3,3) node[above]{\( f(x)  \)};
+	
 
 \end{tikzpicture}}
 %%
@@ -68,8 +69,31 @@
 	\author{Shah Rrks}
 	\section*{Sys 1}
 	\begin{questions}
+		\question[7]
+		Gegeben sind die in der folgenden Abbildung dargestellten Signale h[n] und x(n), die die Länge 4 bzw. 6 aufweisen. h[n] ist die Impulsantwort eines digitalen Systems. 
+
+		\begin{figure}[htpb]
+			\centering
+			\includegraphics[width=0.8\textwidth]{auf1.jpg}
+		\end{figure}
+		
+		\begin{parts}
+			\part[2]
+		Welche Operation wird durch das Symbol * beschreiben ? (Name und Definition)
+		\makeemptybox{3in}
+		\part[5]
+		\pagebreak
+		Zeichnen Sie das Signal y[n]
+		\vspace*{3in}
+		\qrcode[height=1.5cm]{https://youtu.be/3kvAkKcaxNA}
+		\end{parts}		
+		\drawgraph
+		
+		
+\pagebreak
 		\question[5]
 		Zeichnen sie die folgende Signale als Funktion: 
+		
 		\[
 		x(t) = 2 + \cos\bigg(\frac{\pi t}{2s} + \pi\bigg)
 		\]
@@ -78,7 +102,7 @@
 		
 		\question[5]
 		\[
-		x(t) = 5e^{-t/0.5T}.\varepsilon (t)
+		x(t) = 5e^{-t/2T}.\varepsilon (t)
 		\]
 		
 		
@@ -86,13 +110,14 @@
 		
 		\newpage
 		\question[5]
-		\[ x(t) = \frac{2}{T}.rect\bigg(\frac{T-T/2}{T/2}\bigg)
+		\[ x(t) = \frac{2}{T}.rect\bigg(\frac{T-T/2}{2T}\bigg)
 		\]
 		\drawgraph
 		\question[10]
-		Schreiben sie einen Matlab code, der diese Funktion als ein Plot darstellt. 
+		Schreiben sie einen Matlab code, die diese Funktion als Plot darstellt. 
 		\makeemptybox{4in}
-		\qrcode[height = 1cm]{https://www.youtube.com/channel/UCiHSFpMlrhxuYAIA52aLu3w}
+		\qrcode[height=1.5cm]{https://youtu.be/XhV6yEXQbnw} \hspace*{5cm}
+		\qrcode[height=1.5cm]{https://youtu.be/xG-BMMHmNNQ}
 		
 		\newpage
 	
@@ -104,7 +129,7 @@
 	%	\caption{}
 	\label{fig:boolalgebra}
 	\end{figure}
-\qrcode[hyperlink,height = 1cm]{https://github.com/shahrrks/Tutorium-ETIT-4-/blob/main/Formeln_zettel/} \hspace{5cm}
-\qrcode[height = 1cm]{http://web.mit.edu/6.111/www/s2007/PSETS/pset1s.pdf}
+\qrcode[hyperlink,height = 1.5cm]{https://github.com/shahrrks/myTutorium_tex/tree/main/Blatt_1_/FormelnZetteln} \hspace{5cm}
+\qrcode[height = 1.5cm]{http://web.mit.edu/6.111/www/s2007/PSETS/pset1s.pdf}
 \end{questions}
 \end{document}

@@ -1,0 +1,72 @@
+\documentclass[addpoints,12pt,twoside]{exam} %answers 
+\usepackage[paper=a4paper,left=15mm,right=15mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+%\usepackage[dvips]{graphicx}
+\usepackage{floatflt,epsfig} 
+\usepackage{ngerman}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb, amsmath}
+\usepackage[gate,ic,optics]{circ}
+\usepackage{hyperref}
+
+\usepackage{tikz,pgfplots}
+
+\usepackage{graphicx}
+%\usepackage{geometry}
+\usepackage{calc}
+
+
+\usepackage{qrcode} 
+\usepackage{wrapfig}
+\usepackage{gensymb}
+\usepackage{siunitx}
+
+\usepackage{color}
+\definecolor{GridColor}{gray}{0.8}
+\definecolor{SolutionBoxColor}{gray}{0.8}
+\definecolor{SolutionColor}{rgb}{0.8,0.9,1}
+
+\colorgrids
+\colorsolutionboxes
+
+%%MACROS 
+\newcommand{\tdate}{. April 2021}
+\newcommand{\myqr}{\qrcode[hyperlink, height = 1cm]{www.github.com/shahrrks}}
+\newcommand\gauss[2]{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))} % Gauss function, parameters mu and sigma
+%%
+
+\sisetup{
+    locale = DE ,
+    per-mode = symbol
+}
+
+\pagestyle{headandfoot}
+
+\headrule
+\footrule
+\firstpageheader{ETIT-4}{\bfseries\Large {Übungsblatt 1}}{\tdate}
+\runningheader{ETIT-4}
+{Übungsblatt - 1}
+{\tdate}
+\firstpagefooter{ETIT-4}{Seite \thepage\ von \numpages}{\myqr}
+\runningfooter{ETIT-4}{Seite \thepage\ von \numpages}{Shah Rrks}
+
+\boxedpoints
+%\pointpoints{Punkt}{Punkte}
+\pointsinmargin
+\marginpointname{\%}
+
+\begin{document}
+    %\setcounter{section}{1} %current page -1
+    \author{Shah Rrks}
+    \section*{Sys 1}
+    \begin{questions}
+  
+        \question[5]
+        How is the weather today ? 
+ 
+    
+        
+    \end{questions}
+\end{document}

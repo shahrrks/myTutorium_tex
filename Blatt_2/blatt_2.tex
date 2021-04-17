@@ -31,10 +31,11 @@
 \colorsolutionboxes
 
 %%MACROS 
-\newcommand{\tdate}{. April 2021}
-\newcommand{\myqr}{\qrcode[hyperlink, height = 1cm]{www.github.com/shahrrks}}
+\newcommand{\tdate}{23. April 2021}
+\newcommand{\myqr}{\qrcode[hyperlink, height = 1cm]{https://github.com/shahrrks/myTutorium_tex/tree/main/Blatt_2}}
 \newcommand\gauss[2]{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))} % Gauss function, parameters mu and sigma
 %%
+\newcommand{\zt}{\textit{z(t)}}
 
 \sisetup{
     locale = DE ,
@@ -62,11 +63,67 @@
     \author{Shah Rrks}
     \section*{Sys 1}
     \begin{questions}
-  
-        \question[5]
-        How is the weather today ? 
- 
+        \question[12]
+        In Abb.1 ist der zeitliche Verlauf des Signals \textit{z(t)} dargestellt. \textbf{alt Klausur}
     
-        
+            \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.8\textwidth]{auf1_signal}
+            \caption{Signalverlauf z(t)}
+            \label{fig:Signalverlauf-z-t-}
+            \end{figure}
+            \begin{parts}
+                \part Bestimmen Sie die abschnittweise Definition von \textit{z(t)}
+                \makeemptybox{2in}
+                \part Berechnen Sie die Energie des Signals \zt. Handelt es sich hierbei um ein Energie- oder Leistungsignal ? 
+                \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.4\textwidth]{blk}
+                \caption{Blockdiagram}
+                \label{fig:Blockdiagram}
+                \end{figure}
+                \part Bestimmen Sie für das in Bild 2 dargestellte System S das Ausgangssignal 
+            \textit{y(t)}   in Abhängigkeit des Eingangssignal \textit{x(t)}. 
+            \end{parts}
+            
+            \question[4]
+            Summe Berechnen 
+            \[ \sum_{n=1}^{\infty} \left( \frac{1}{3}  \right)^n
+            \]
+            \begin{figure}[h]
+            %\centering
+            \includegraphics[width=0.5\textwidth]{auf2}
+            \caption{ Summe Berechnen}
+            \label{fig: Summe Berechnen}
+            \end{figure}
+            
+            \question[6]
+            Integrale Berechnen
+            \begin{figure}[h]
+            %\centering
+            \includegraphics[width=0.5\textwidth]{auf3}
+            \caption{Integrale Berechnen}
+            \label{fig:Integrale Berechnen}
+            \end{figure}
+
+            
     \end{questions}
+\newpage
+    \section*{Info2}
+	Boolsche Algebra Übungen (quelle:\url{ocw.mit.edu})
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\linewidth]{bool_algebra}
+	%	\caption{}
+	\label{fig:boolalgebra}
+	\end{figure}
+\qrcode[hyperlink,height = 1.5cm]{https://github.com/shahrrks/myTutorium_tex/tree/main/Blatt_1_/FormelnZetteln} \hspace{5cm}
+\qrcode[height = 1.5cm]{http://web.mit.edu/6.111/www/s2007/PSETS/pset1s.pdf}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{conv}
+    \caption{}
+    \label{fig:}
+    \end{figure}
 \end{document}

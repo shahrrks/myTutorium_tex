@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.10.20)  17 APR 2021 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.10.20)  19 APR 2021 21:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -995,9 +995,7 @@ LaTeX Info: Redefining \nameref on input line 61.
 \openout4 = `blatt_2.out'.
 
  ABD: EveryShipout initializing macros
-
-Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into your preamble.
- on input line 61.
+Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
 
 LaTeX Info: Redefining \celsius on input line 61.
 Package gensymb Info: Faking symbols for \degree and \celsius on input line 61.
@@ -1153,26 +1151,26 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 This exam contains 3 questions with 3 parts, 0 subparts, and 0 subsubparts.
 This exam has a total of 36 points.
 This exam has a total of 0 bonus points.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 130.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 130.
 (c:/Github/myTutorium_tex/Blatt_2/blatt_2.aux <Reading QR code for \errhelp {Use `` for a simple double quote character.}\errmessage {german: The command "\qr@savedmatrix@name is undefined}``https://github.com/shahrrks/myTutorium_tex/blob/main/Blatt_2/blatt_2.pdf\protect {\grmnU@D 1ex{\setbox \z@ \hbox {\char 127}\dimen@ -.45ex\advance \dimen@ \ht \z@ \fontdimen 5\font \dimen@ }\accent 127\fontdimen 5\font \grmnU@D a}\penalty \@M \hskip \z@skip t level 5-M from aux file.>
 <Reading QR code for \errhelp {Use `` for a simple double quote character.}\errmessage {german: The command "\qr@savedmatrix@name is undefined}``https://github.com/shahrrks/myTutorium_tex/tree/main/Blatt_1_/FormelnZetteln\protect {\grmnU@D 1ex{\setbox \z@ \hbox {\char 127}\dimen@ -.45ex\advance \dimen@ \ht \z@ \fontdimen 5\font \dimen@ }\accent 127\fontdimen 5\font \grmnU@D a}\penalty \@M \hskip \z@skip t level 5-M from aux file.>
 <Reading QR code for \errhelp {Use `` for a simple double quote character.}\errmessage {german: The command "\qr@savedmatrix@name is undefined}``http://web.mit.edu/6.111/www/s2007/PSETS/pset1s.pdf\protect {\grmnU@D 1ex{\setbox \z@ \hbox {\char 127}\dimen@ -.45ex\advance \dimen@ \ht \z@ \fontdimen 5\font \dimen@ }\accent 127\fontdimen 5\font \grmnU@D a}\penalty \@M \hskip \z@skip t level 4-M from aux file.>
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 130.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 130.
 Package rerunfilecheck Info: File `blatt_2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 130.
  ) 
 Here is how much of TeX's memory you used:
  41628 strings out of 492623
  938432 string characters out of 6133289
- 1161125 words of memory out of 5000000
+ 1164467 words of memory out of 5000000
  45001 multiletter control sequences out of 15000+600000
  539655 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,96p,1635b,868s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,13n,127p,1635b,868s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 Output written on c:/Github/myTutorium_tex/Blatt_2/blatt_2.pdf (4 pages, 422800 bytes).
 PDF statistics:

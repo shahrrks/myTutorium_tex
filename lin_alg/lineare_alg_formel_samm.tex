@@ -1,0 +1,561 @@
+% Mathe Formelsammlung für HM1 SoSe 2011
+% 2 Seiten
+
+% Dokumenteinstellungen
+% ======================================================================	
+
+% Dokumentklasse (Schriftgröße 6, DIN A4, Artikel)
+\documentclass[6pt,a4paper]{scrartcl}
+
+% Pakete laden
+\usepackage[utf8]{inputenc}		% Zeichenkodierung: UTF-8 (für Umlaute)   
+\usepackage[german]{babel}		% Deutsche Sprache
+\usepackage{multicol}			% Spaltenpaket
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}				% erweiterte Integralsymbole
+\usepackage{multicol}			% ermöglicht Seitenspalten  
+\usepackage{wasysym}			% Blitz
+\usepackage{graphicx}
+\usepackage[colorlinks=true, urlcolor=black]{hyperref}
+  
+% Seitenlayout und Ränder:
+\usepackage{geometry}
+\geometry{a4paper,landscape, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot} 
+
+%Kopf- und Fußzeile
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+   \fancyfoot[C]{\textbf{Lineare Algebra} von Lukas Kompatscher (\href{mailto:lukas.kompatscher@tum.de}{lukas.kompatscher@tum.de})}
+   \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
+   \renewcommand{\footrulewidth}{0.1pt} %untere Linie
+
+   \fancyfoot[R]{Stand: \today \qquad \thepage}
+   \fancyfoot[L]{Homepage: www.latex4ei.de - Fehler bitte sofort melden.}
+	
+% Schriftart SANS für bessere Lesbarkeit bei kleiner Schrift
+\renewcommand{\familydefault}{\sfdefault} 
+
+
+% Custom Commands
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\newcommand{\me}[1]{\ensuremath{\left\{#1\right\}}}
+\newcommand{\dme}[2]{\ensuremath{\left\{#1\,\vert\,#2 \right\}}}
+\newcommand{\abs}[1]{\ensuremath{\left\vert#1\right\vert}}
+\newcommand{\un}[1]{\; \unit{#1} }
+\newcommand{\unf}[2]{\;\left[ \unitfrac{#1}{#2} \right]}
+\newcommand{\norm}[2][\relax]{\ifx#1\relax \ensuremath{\left\Vert#2\right\Vert}\else \ensuremath{\left\Vert#2\right\Vert_{#1}}\fi}
+\newcommand{\enbrace}[1]{\ensuremath{\left(#1\right)}}
+\newcommand{\nira}[1]{\ensuremath{\overset{n \rightarrow \infty}{\longrightarrow}}}
+\newcommand{\os}[2]{\ensuremath{\overset{#1}{#2}}}
+\makeatletter
+\newcommand{\Ra}[0]{\ensuremath{\Rightarrow}}
+\newcommand{\ra}[0]{\ensuremath{\rightarrow}}
+\newcommand{\gk}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
+\newcommand{\sprod}[2]{\ensuremath{%
+  \setbox0=\hbox{\ensuremath{#2}}
+  \dimen@\ht0
+  \advance\dimen@ by \dp0
+  \left\langle #1\rule[-\dp0]{0pt}{\dimen@},#2\right\rangle}}
+  
+%Custom functions
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\Kern}{kern}
+\DeclareMathOperator{\proj}{proj}
+
+
+
+% Dokumentbeginn
+% ======================================================================
+\begin{document}
+%\section{}
+% ----------------------------------------------------------------------
+
+% Aufteilung in Spalten
+\begin{multicols*}{4}
+\parbox{2.3cm}{
+	
+}
+\parbox{4cm}{
+	\huge{\textbf{Lineare Algebra}}
+}
+\subsection{Allgemeines} % (fold)
+\label{sub:allgemeines}
+
+Dreiecksungleichung \qquad \qquad \qquad
+\begin{math}\begin{array}{l}
+	\abs{x + y} \le \abs{x} + \abs{y}
+\end{array}\end{math} \\
+Cauchy-Schwarz-Ungleichung: \qquad 
+\begin{math}\begin{array}{l}
+\left| \sprod{x}{y} \right| \le \| x\| \cdot \| y\|
+\end{array}\end{math}\\
+$\mathbb{K}$ steht für $\mathbb{R}$ und $\mathbb{C}$\\
+$\mathbb{I}_n$ ist die $nxn$-Einheitsmatrix.
+
+\subsection{Matrizen}
+% ----------------------------------------------------------------------
+Die Matrix $A=(a_{ij}) \in \mathbb K^{m\times n}$ hat $m$ Zeilen mit Index $i$ und $n$ Spalten mit Index $j$.
+
+\subsubsection{Allgemeine Rechenregeln}
+\textbf{Merke:} Zeile vor Spalte! (Multiplikation, Indexreihenfolge, etc.)\\
+
+\begin{tabular}{ll}	
+	1)  $A+0=A$ & 2)  $1 \cdot A=A$ \\
+	3)  $A+B=B+A$ & 4) $A \cdot B \ne B \cdot A$ (im Allg.) \\
+	5)  $(A+B)+C=A+(B+C)$ & 6) $\lambda (A+B) = \lambda A + \lambda B$\\ 
+\end{tabular}
+Multiplikation von $A\in \mathbb K^{m\times r}$ und $B\in \mathbb K^{r\times n}$: $AB\in\mathbb K^{m\times n}$
+
+\subsubsection{Elementare Zeilenumformungen (EZF) (gilt äquiv. für Spalten)}
+$A \in \mathbb K^{m\times n}$ hat $m$ Zeilen $z_i\in \mathbb K^n$
+\begin{itemize}\itemsep0pt
+\item Vertauschen von Zeilen
+\item Multiplikation einer Zeile mit $\lambda\ne 0$ 
+\item Addition des $\lambda$-fachen der Zeile $z_i$ zur Zeile $z_j$
+\end{itemize}
+
+\subsubsection{Transponieren}
+$A=(a_{ij})\ \in \mathbb K^{m\times n}$ gilt: $A^\top=(a_{ji})\ \in \mathbb K^{n\times m}$\\
+\textbf{Regeln:}\\
+$(A+B)^\top=A^\top+B^\top$\qquad $(A\cdot B)^\top=B^\top\cdot A^\top$\qquad \\
+$(\lambda A)^\top=\lambda A^\top$ \qquad \qquad \qquad $(A^\top)^\top=A$\\
+\\
+$A\in \mathbb K^{n\times n}$ ist symmetrisch, falls $A=A^\top$\qquad ($\Rightarrow$ diagbar)\\
+$A\in \mathbb K^{n\times n}$ ist schiefsymmetrisch, falls $A=-A^\top$\\
+$A\in \mathbb K^{n\times n}$ ist orthogonal (Spalten-/Zeilenvektoren=ONB), falls:\\
+$AA^\top=\mathbb{I}_n \quad \Leftrightarrow \quad A^\top=A^{-1} \quad \Leftrightarrow \quad \det A=\pm 1$\\
+$A\in \mathbb C^{n\times n}$ ist hermitesch, falls $A=\overline{A}^\top$  \quad (kmplx. konj. u. transp.)
+
+
+\subsubsection{Inverse Matrix von $A\in \mathbb K^{n\times n}$}
+Für die inverse Matrix $A^{-1}$ von $A$ gilt: $A^{-1}A=\mathbb{I}_n$\\
+$(A^{-1})^{-1}=A$ \qquad $(AB)^{-1}=B^{-1}A^{-1}$ \\
+$(A^\top)^{-1}=(A^{-1})^\top$\\
+\\
+$A\ \in \mathbb K^{n\times n}$ ist invertierbar, falls: $\det (A) \ne 0 \quad \lor \quad \rang(A)=n$\\
+\\
+Berechnen von $A^{-1}$ nach Gauß:\\
+$AA^{-1}=\mathbb{I}_n\quad\Rightarrow\quad (A|\mathbb{I}_n)\overset{EZF}{\longrightarrow}(\mathbb{I}_n|A^{-1})$\\
+2x2-Matrix:$\enbrace{\begin{matrix}
+a & b \\
+c & d
+\end{matrix}}^{-1} = \frac{1}{ad-bc}\begin{pmatrix}
+d & -b \\
+-c & a
+\end{pmatrix}$
+
+\subsubsection{Rang einer Matrix $A\in \mathbb K^{m\times n}$}
+{\tiny (N0-Zeilen = Nicht-Null-Zeilen)}\\ \\
+\textbf{Bringe A auf ZSF} \\
+Rang (Zeilrang) $\rang(A)$: Anzahl N0-Zeilen \\     
+Zeilenraum $\row(A)$: Erzeugnis der Zeilen, $\text{Basis}(\row(A)) = \{\text{ N0-Zeilen }\}$ \\
+Kern: $\Kern(A) = \dme{x \in \mathbb K^n}{Ax= 0}$ \\
+Dimensionsformel: $\rang(A) + \mathrm{dim}(\Kern(A)) = n$ \\
+\textbf{Bringe A auf Spaltenstufenform (transponieren, ZSF)} \\
+Spaltenrang: Anzahl der N0-Spalten\\
+Spaltenraum $\col(A)$: Erzeugnis der Spalten, $\text{Basis}(\col(A)) = \{\text{ N0-Spalten }\}$ \\
+Bild = Spaltenraum: Erzeugnis der Spalten 
+\subsubsection{Matrixpotenzen}
+Gegeben: $A \in\mathbb{R}^{mxn}, x \in\mathbb{R}^n$.\\
+Gesucht: Lösung von $A^n$.\\
+\begin{itemize}
+	\item Bestimme Eigenwerte $\lambda$ und Eigenvektoren $v$ von $A$.
+	\item Bestimme $\alpha_1, ..., \alpha_k$ mit $x = \alpha_1v_1 + ... + \alpha_kv_k$.
+	\item $A^nx = \alpha_1\lambda_1^nv_1+ ... + \alpha_k\lambda_k^nv_k$.
+\end{itemize}
+Gegeben: $A \in\mathbb{R}^{nxn}, A$ diagonalisierbar.\\
+Gesucht: $A^n$.
+\begin{itemize}
+	\item $A^n = SD^nS^{-1}$ mit $D^n = \begin{pmatrix}
+	\lambda_1^n & \ldots & 0 \\
+	\vdots & \ddots & \vdots\\
+	0 & \ldots & \lambda_k^n \\
+	\end{pmatrix}$.
+\end{itemize}
+
+\subsubsection{Lineares Gleichungssystem LGS}
+Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
+\\
+\textbf{Lösbarkeitskriterium:}\\
+Ein LGS $(A|b)$ ist genau dann lösbar, wenn: $\rang(A)=\rang(A|b)$\\
+Die Lösung des LGS $(A|b)$ hat $\dim(\Kern(A)) = n-\rang(A)$ frei wählbare Parameter.\\
+\\
+Das LGS hat eine Lsg. wenn $\det A \not= 0$ \quad $\rightarrow \exists A^{-1}$ \\
+Das homogene LGS: $(A|0)$ hat stets die triviale Lösung $0$\\
+Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
+
+\subsubsection{Determinante von $A\in \mathbb K^{n\times n}$: $\det(A)=|A|$}
+
+\begin{itemize}\itemsep0pt
+\item $|A|=\sum\limits_{i=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Entwicklung n. $j$-ter Spalte
+\item $|A|=\sum\limits_{j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Entwicklung n. $i$-ter Zeile
+\item $\det\begin{pmatrix}A&0\\C&D\end{pmatrix}=\det\begin{pmatrix}A&B\\0&D\end{pmatrix}=\det(A)\cdot\det(D)$
+\item $\begin{vmatrix}\lambda_1&&* \\ &\ddots& \\ 0&&\lambda_n \end{vmatrix} = \lambda_1\cdot \ldots\cdot \lambda_n = \begin{vmatrix} \lambda_1&&0  \\  &\ddots& \\  *&&\lambda_n \end{vmatrix}$
+\item $A=B \cdot C \quad \Rightarrow \quad |A|=|B| \cdot |C|$
+\item $\det(A)=\det(A^\top)$
+\item Hat $A$ zwei gleiche Zeilen/Spalten $\Rightarrow |A|=0$
+\item $\det(\lambda A)=\lambda^n \det(A)$
+\item Ist $A$ invertierbar, so gilt: $\det(A^{-1})=(\det(A))^{-1}$
+\item $\det(AB) = \det(A) \det(B) = \det(B) \det(A) = \det(BA)$
+\end{itemize}
+\textbf{Umformung Determinante}
+\begin{itemize}\itemsep0pt
+\item Vertauschen von Zeilen/Spalten ändert Vorzeichen von $|A|$
+\item Zeile/Spalte mit $\lambda$ multiplizieren, $|A|$ um Faktor $\lambda$ größer
+\item Addition des $\lambda$-fachen der Zeile X zur Zeile Y ändert $|A|$ nicht 
+\end{itemize}
+\textbf{Vereinfachung für Spezialfall $A\in \mathbb K^{2\times 2}$}\\
+$A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
+
+\subsubsection{Äquivalente Aussagen für $A\in \mathbb K^{n\times n}$}
+\begin{tabular}{ll}
+	1)  $A$ ist invertierbar & 2) $\dim(\col(A))=\dim(\row(A))=n$\\
+	3)  $\Kern(A)={0}$ & 4) Die strenge ZSF von $A$ ist $\mathbb{I}_n$\\
+	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig\\
+	7) $Ax=b$ hat eine & 8) 0 ist kein Singulärwert von $A$\\\ \ \ \ eindeutige Lösung $\forall b\in\mathbb{R}^n$ & 9) Lineare Abbildung ist bijektiv\\
+	10)  $\rang(A)=n$ & 11) 0 ist kein Eigenwert von $A$\\
+
+\end{tabular}
+
+\subsection{Vektoren}
+Ein Vektor ist ein $n$-Tupel reeller oder komplexer Zahlen, also ein Element aus dem $\mathbb K^n$.
+\subsubsection{Skalarprodukt $\langle v,w \rangle: V\times V \rightarrow \mathbb R$} 
+	\begin{enumerate}\itemsep0pt
+	\item Linear: $\langle u,v+w \rangle=\langle u,v \rangle + \langle u,w \rangle \land \langle u,\lambda v \rangle = \lambda \langle u, v \rangle$ 
+	\item Symmetrisch: $\langle v,w \rangle=\langle w,v \rangle$
+	\item Positiv definit: $\langle v,v \rangle\ge0$  \qquad $\langle v,v \rangle=0 \Leftrightarrow v=0$
+	\end{enumerate} 
+\textbf{Kanonisches Skalarprodukt} \\
+$\langle v,w \rangle=v^\top  w=v_1w_1+\dots+v_nw_n$\\ \\
+\textbf{Skalarprodukt} bzgl. sym., quadr. und positiv definiter Matrix $A\in \mathbb K^{n\times n}$\\
+$\langle v,w \rangle_A=v^\top A w$\\
+\textbf{Skalarprodukt Polynome} $\sprod{p(x)}{q(x)}=\int\limits_{0}^{1}p(x)q(x)\,dx$ \\
+\textbf{Orthogonalität} $\sprod{a}{b} = 0 \Leftrightarrow a\perp b$ \\
+\textbf{Projektion} eines Vektor $v$ längs $a$: $\proj_a(v) = \frac{\sprod{v}{a} }{\sprod{a}{a} }\cdot a$\\
+\textbf{Orthogonale Zerlegung} eine Vektors $v$ längs $a$:\\ 
+$v = \proj_a(v) + \proj_{a^\perp}(v) \Rightarrow \proj_{a^\perp}(v) = v - \proj_a(v)$\\
+\textbf{Winkel} \quad 	$\cos \phi = \frac{\sprod{a}{b}}{\norm{a} \norm{b}} $ \qquad
+$\phi = \arccos \enbrace{ \frac{\sprod{a}{b} }{\norm{a} \norm{b} } }$
+
+\subsubsection{Kreuzprodukt (Vektorprodukt)}
+$a\times b=\left( \begin{matrix} a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{matrix}\right)$\qquad $a,b\ \in \mathbb R^3$\\
+\\
+$a\times b \perp a,b$ \qquad (falls $a\times b=0\ \Leftrightarrow\ a,b$\ linear abhängig)\\
+$a \times b = -b \times a$\\
+$\norm{a\times b}=\norm{a}\cdot\norm{b}\cdot \sin\left(\measuredangle (a,b)\right)\mathrel{\widehat{=}}$\ Fläche des Parallelogramms\\
+Graßmann-Identität: $a\times(b \times c)\equiv b\cdot(a \cdot c)-c\cdot(a \cdot b)$\\
+\\
+\textbf{Spatprodukt}\\
+$[a,b,c]:=\langle  a\times b, c\rangle=\det (a,b,c)\mathrel{\widehat{=}}$\ Volumen des Spates.\\
+$[a,b,c]>0\ \Leftrightarrow\ a,b,c$\ bilden Rechtssystem \\ $[a,b,c]=0\ \Leftrightarrow\ \{a,b,c\}$\ linear abhängig
+
+\subsection{Vektorräume (VR)}
+% --------------------------------------------------------------
+Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vektorraum über dem Körper $\mathbb K$. \\
+\textbf{Bedingung $(u,v,w\in V \quad \lambda,\mu \in \mathbb{R})$}
+\begin{enumerate}\itemsep0pt
+\item $v+w\in V$ \qquad $\lambda v \in V$
+\item $u+(v+w)=(u+v)+w$
+\item $0\in V: v+0=v$
+\item $v'\in V: v+v'=0$
+\item $v+w=w+v$
+\item $\lambda(v+w)=\lambda v + \lambda w$
+\item $(\lambda + \mu)v=\lambda v +\mu v $
+\item $(\lambda \mu)v = \lambda(\mu v)$
+\item $1v=v$
+\end{enumerate}\itemsep0pt
+\subsubsection{Untervektorraum (UVR) $U\subset V (u,v\in U \quad \lambda\in\mathbb{R})$}
+\begin{enumerate}\itemsep0pt
+\item $U\ne \emptyset \qquad (0\in U)$
+\item $u+v\in U$
+\item $\lambda u \in U$
+\end{enumerate}
+
+\subsubsection{Basis (Jeder VR und jeder UVR besitzt eine Basis!)} % (fold)
+\label{sub:basis}
+ Eine Teilmenge $B\subset V$ heißt Basis von $V$, wenn gilt:
+\begin{itemize}\itemsep0pt
+	\item $\mathrm{span}(B) =V$, $B$ erzeugt $V$
+	\item $B$ ist linear unabhängig
+\end{itemize}    
+
+\subsubsection{Dimension}
+$n=\dim(V)=\abs{B} = $ Mächtigkeit von $B$\\
+Mehr als $n$ Vektoren aus $V$ sind stets linear abhängig. \\
+Für jeden UVR $U \subset V$ gilt: $\dim (U) \le \dim (V)$ 
+
+\subsubsection{Linearkombination}
+Jeder Vektor $v\in\mathbb{K}^n$ kann als Linearkombination einer Basis $B=\{b_1, \dots, b_n\} \subset \mathbb{K}^n$ dargestellt werden
+\begin{equation*}
+v=\lambda_1 b_1 + \dots + \lambda_n b_n \Rightarrow \text{Gauß} \ \Big(b_1 \ b_2 \ b_3 \ |\ v\ \Big)
+\end{equation*}
+\textbf{Linear Unabhängig:}
+Vektoren heißen linear unabhängig, wenn aus: \\
+$\lambda_1 v_1 + \dots + \lambda_n v_n = 0$ folgt, dass $\lambda_1 = \dots = \lambda_n = 0$
+
+\subsubsection{Orthogonalität}
+$B\subset V$ heißt
+\begin{itemize}\itemsep0pt
+\item \textbf{Orthogonalsystem}, wenn $\forall v,w\in B: v\perp w$
+\item \textbf{Orthogonalbasis}, wenn $B$ Orthogonalsystem und Basis von $V$
+\item \textbf{Orthonormalsystem}, wenn $B$ Orthogonalssystem u. $\forall v\in B: \norm{v}=1$
+\item \textbf{Orthonormalbasis(ONB)},  wenn $B$ Orthonormalsystem u. Basis von V ist
+\end{itemize}
+\textbf{Matrix $A$ heißt orthogonal}, wenn $A^\top A = \mathbb{I}_n$
+\begin{itemize}\itemsep0pt
+\item $A^{-1}=A^\top $
+\item $\det{A}=\pm1$
+\item Spalten bilden ONB
+\item Zeilen bilden ONB
+\item $\norm{Av}=\norm{v}$
+\end{itemize}\itemsep0pt
+\textbf{Orthonormalisierungsvefahren einer Basis $\{v_1,\ldots,v_n\}$ nach Gram-Schmidt}
+\begin{enumerate}\itemsep0pt
+\item $b_1=\frac{v_1}{\|v_1\|}$ \qquad (Vektor mit vielen 0en oder 1en)
+\item $b_{2}= \frac{c_2}{\norm{c_2}}$\ \ mit \ \ $c_2=v_2-\frac{\sprod{v_2}{v_1}}{\sprod{v_1}{v_1}}\cdot v_1$
+\item $b_{3}= \frac{c_3}{\norm{c_3}}$\ \ mit \ \ $c_3=v_3-\frac{\sprod{v_3}{v_1}}{\sprod{v_1}{v_1}} \cdot v_1-\frac{\sprod{v_3}{c_2}}{\sprod{c_2}{c_2}}\cdot c_2$
+\end{enumerate}
+\textbf{Erweitern einer ONB von $V$ auf eine ONB des $\mathbb{R}^n$}
+\begin{enumerate}\itemsep0pt
+	\item Vektor $e_i \text{ mit } i \in \{1...n\}$ so wählen, sodass die Skalarprodukte möglichst einfach zu berechnen sind.
+	\item Gram-Schmidt für $e_i$ $\Rightarrow$ Ergebnis zur Basis hinzufügen
+	\item So lange Wiederholen bis die Basis $n$ Vektoren besitzt.
+	\item Alle neu hinzugefügten Vektoren bilden zusammen eine ONB von $V^\perp$
+\end{enumerate}
+\textbf{Orthogonale Projektion auf UVR} \\
+Gegeben: Vektorraum $V \in \mathbb{R}^n$, $v\in V$, Untervektorraum $U\subset V$
+\begin{enumerate}\itemsep0pt
+\item Basis von $U$ bestimmen
+\item Orthogonalisiere Basis $\{u_1,u_2,u_3,\ldots\}$ von $U$
+\item $\proj_U(v) = \frac{\sprod{v}{u_1}}{\sprod{u_1}{u_1}}u_1 + \frac{\sprod{v}{u_2}}{\sprod{u_2}{u_2}}u_2 +\dots$
+\item $\proj_{U^\perp}(v)=v-\proj_U(v)$
+\item Abstand von $v$ zu $U$ = $\norm{\proj_{U^\perp}(v)}$
+\end{enumerate}
+Alternative Methode
+\begin{enumerate}\itemsep0pt
+\item Basis $\{b_1,\ldots,b_r\}$ von $U$ bestimmen
+\item Setze $A = \big(b_1\ b_2\ \dots \ b_r\big) \in \mathbb{R}^{n\times r}$
+\item Löse das LGS $A^\top Ax=A^\top v$ und erhalte den Lösungsvektor $x=(\lambda_1, \dots,\lambda_r)^\top $
+\item $\proj_U(v)=\lambda_1 b_1 +\dots +\lambda_r b_r$
+\end{enumerate}
+
+\subsection{Norm}
+\textbf{Norm von Vektoren}
+$\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
+$\forall v, w \in \mathbb{R}^n$:
+\begin{enumerate}\itemsep0pt
+\item $\norm{\lambda v}=\abs{\lambda}\norm v$
+\item $\norm{v+w}\le \norm{v} + \norm{w}$
+\end{enumerate}
+
+\subsection{Lineare Abbildungen}
+Abbildung $f:V\rightarrow W$ ist linear, wenn
+\begin{enumerate}\itemsep0pt
+\item $f(0)=0$
+\item $f(a+b)=f(a)+f(b)$
+\item $f(\lambda a)=\lambda f(a)$
+\end{enumerate}
+$\Rightarrow$ Abbildung als Matrix darstellbar (siehe Abbildungsmatrix)\\ \\
+\textbf{Injektiv}, wenn aus $f(x_1)=f(x_2) \Rightarrow x_1=x_2$\\
+\textbf{Surjektiv}: $\forall y\in W \ \exists x\in V:f(x)=y$\\ \quad (Alle Werte aus $W$ werden angenommen.)\\
+\textbf{Bijektiv}(Eineindeutig): $f$ ist injektiv und surjektiv $\Rightarrow$ $f$ umkehrbar.
+\subsubsection{Koordinatenvektor bezüglich einer Basis $B$}
+Gegeben: Vektorraum $V \in\mathbb{R}^n$, $v \in V$.\\
+Gesucht: $[v]_B$ (Koordinaten von $v$ bezüglich der Basis $B$).
+\begin{enumerate}
+	\item Bestimme Basis $B$ von $V$.
+	\item Löse das LGS $Bx = v$.
+	\item $[v]_B = x$.
+\end{enumerate}
+\subsubsection{Abbildungsmatrix (Darstellungsmatrix)}
+Lineare Abbildung $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ \\
+Abbildungsmatrix spaltenweise:
+$[f] = \begin{pmatrix}f(e_1) & \dots & f(e_n)
+\end{pmatrix} $ \\ \\
+\textbf{Allgemein} $f:V\rightarrow W$ mit $V, W$ Vektorräume \\
+$B=(b_1,\dots,b_n)$ ist eine Basis von $V$, $\exists B^{-1}$. \\
+$[f]_B := B^{-1}[f]B$.\\ \\
+Gesucht: $x \in\mathbb{R}^n$ mit $f(x) = b$ und $b\in\mathbb{R}^n$.\\
+- Löse das LGS $[f]_Bx = B^{-1}b$.\\
+Folgende Aussagen sind äquivalent:\\
+a) $[f]_B = \begin{pmatrix}
+\lambda_1 & & & \\
+& \lambda_2 & & \\
+& & \ddots & \\
+& & & \lambda_n \\ 
+\end{pmatrix}$.\\
+b) $f(b_1) = \lambda_1b_1, ..., f(b_n) = \lambda_nb_n$.\\ \\
+
+$C=(c_1,\dots,c_n)$ ist eine Basis von $V$. \\
+$\Rightarrow [f]_B^C = \begin{pmatrix}
+\vert & \vert &  & \vert \\
+f(b_1)_C & f(b_2)_C & \cdots & f(b_n)_C\\
+\vert & \vert &  & \vert
+\end{pmatrix}$ \\
+ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$. \\
+''In der j-ten Spalte der Abbildungsmatrix stehen die Koordinaten des Bildes $f(b_j)$ bzgl. der Basis $C=(c_1,\dots,c_m)$'' \\ \\
+\textbf{Eigenschaften von $f$ mit Hilfe von $[f]$}
+\begin{itemize}\itemsep0pt
+\item $\Kern(f) = \{ x\in\mathbb{R}^n : f(x) = 0 \}$
+\item $\im(f) = \col([f])$
+\item $f$ injektiv, wenn $\Kern([f])=\{0\}$
+\item $f$ surjektiv, wenn $\im([f])=\mathbb{R}^m$
+\item $f$ bijektiv, wenn $[f]$ invertierbar
+\item $f$ ist bijektiv $\Leftrightarrow f$ ist injektiv $\Leftrightarrow f$ ist surjektiv
+\end{itemize}
+\subsubsection{Transformationsmatrix}
+Transformationsmatrix der Koordinaten von $B$ zu $C$: $_CT_B$\\
+\textbf{Regeln und Berechnung:}
+\begin{itemize}
+	\item $_{\mathbb{I}_n}T_B = T_B$: Vektoren der Basis $B$
+	\item $_CT_B = {_CT} \cdot T_B$
+	\item $(_CT_B)^{-1} = {_BT_C}$
+	\item $[v]_C = {_CT_B}\cdot[v]_B$
+	\item $C=B\cdot {_CT_B}$
+\end{itemize}
+\subsection{Diagonalisierung (Eigenwerte und Eigenvektoren)}
+Gegeben: Quadratische Matrix $A \in \mathbb{R}^{n\times n}$.\\
+Gilt $Av = \lambda v$ mit $v\ne 0$, so nennt man
+\begin{itemize}\itemsep0pt
+\item $v\in V$ einen \textbf{Eigenvektor} von $A$ zum \textbf{Eigenwert} $\lambda \in \mathbb{R}$ und 
+\item $\lambda \in \mathbb{R}$ einen \textbf{Eigenwert} von A zum \textbf{Eigenvektor} $v\in V$
+\end{itemize}
+Ist $\lambda$ ein Eigenwert von A, so nennt man den Untervektorraum
+\begin{itemize}\itemsep0pt
+\item $\text{Eig}_A(\lambda) = \{v \in \mathbb{R}^n | Av = \lambda v\}$ den Eigenraum von A zum Eigenwert $\lambda$ und
+\item $\dim({\text{Eig}_A(\lambda))}$ die geometrische Vielfachheit des Eigenwerts $\lambda$
+\item $\text{geo}(\lambda) = \dim(\text{Eig}_A(\lambda))$
+\end{itemize}
+\textbf{Diagonalisieren von Matrizen}\\
+$A$ ist diag.bar falls eine invertierbar Matrix $B$ existiert, sodass
+\begin{equation*}
+D=B^{-1}AB \ \Leftrightarrow \ A=BDB^{-1}
+\end{equation*}
+und $D$ eine Diagonalmatrix ist.
+\begin{itemize}\itemsep0pt
+\item Eine Matrix ist genau dann diagonalisierbar wenn $\text{alg}(\lambda)=\text{geo}(\lambda)$ für jeden Eigenwert $\lambda$ von $A$ gilt.
+\item Jede Matrix $A \in \mathbb{R}^{n\times n}$ mit $n$ verschiedenen Eigenwerten ist diagonalisierbar.
+\item Eine symmetrische Matrix hat nur reelle Eigenwerte und ist diagonalisierbar.
+\item Die Determinante einer Matrix ist gleich dem Produkt der Eigenwerte: $\det(A)=\lambda_1\dots\lambda_n$
+\end{itemize}
+\subsubsection{Rezept: Diagonalisieren}
+Gegeben: $A\in \mathbb{R}^{n\times n}$
+\begin{enumerate}\itemsep0pt
+\item Bestimme das charakteristische Polynom von $A$
+\begin{equation*}
+p_A(\lambda)=\det(A-\lambda \mathbb{I}_n)
+\end{equation*}
+\item Charakteristische Polynom $p_A$ in Linearfaktoren zerlegen.
+\begin{equation*}
+p_A(\lambda)=(\lambda_1-\lambda)^{\nu_1}\dots(\lambda_r-\lambda)^{\nu_r}
+\end{equation*}
+Es gilt $\nu_1 + \dots + \nu_r=n$ \\
+$\lambda_1,\dots, \lambda_r$ sind die Eigenwerte mit algebraischer Vielfachheit $\text{alg}(\lambda_i)=\nu_i$\\
+Ist $p_A$ nicht vollständig in Linearfaktoren zerlegbar $\Rightarrow$ A nicht diagonalisierbar!
+\item Bestimme zu jeden Eigenwert $\lambda_i$ den Eigenraum $V_i$
+\begin{equation*}
+V_i=\Kern(A-\lambda_i\mathbb{I}_n)=\text{span}(B_i)
+\end{equation*}
+Die Vektoren der Basis $B_i$ sind die Eigenvektoren von $\lambda_i$.\\ \\
+\textbf{Einfacher:} Der Eigenvektor $v_i$ ist Lösung des homogenen LGS
+\begin{equation*}
+(A-\lambda_i \mathbb{I}_n)v_i=0
+\end{equation*}
+$\dim(V_i)=\text{geo}(\lambda_i)$  geometr. Vielfachheit des Eigenwerts $\lambda_i$. \\
+Gilt geo$(\lambda_i)\ne\text{alg}(\lambda_i)$ für ein $i$, ist A nicht diagonalisierbar!
+\item $B=(v_1 \ \dots v_n)$ setzt sich aus den Eigenvektoren zusammen. \\
+$D=\diag(\lambda_1,\dots,\lambda_n)$ ist die Diagonalmatrix der Eigenwerte.
+\begin{equation*}
+D=B^{-1}AB \ \Leftrightarrow \ A=BDB^{-1}
+\end{equation*}
+\end{enumerate}
+\subsection{QR-Zerlegung}
+$A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
+\textbf{Vorgehen}
+\begin{itemize}\itemsep0pt
+ \item $Q$ berechnen durch Gram-Schmidt mit den Spalten von $A$, beginnend bei der ersten
+ \item Die Koeffizienten von $R$ ergeben sich durch Umstellen der jeweiligen Gram-Schmidt Gleichungen auf die Spalten von $A$
+ \item Alternativ gilt: $R = Q^TA$
+\end{itemize}
+
+\subsection{Kleinstes-Quadrate-Problem}
+Für $Ax = b$ lautet die
+\textbf{Normalengleichung}
+$A^TAx = A^Tb$\\
+$\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (existiert immer).
+
+\subsection{Singulärwertzerlegung}
+Bei der Singulärwertzerlegung wird eine beliebige Matrix $A\in \mathbb{R}^{m\times n}$ als Produkt dreier Matrizen $U$, $S$ und $V$ geschrieben
+\begin{equation*}
+A=USV^\top
+\end{equation*}
+mit $U\in \mathbb{R}^{m\times m}$, $S\in \mathbb{R}^{m\times n}$ und $V\in \mathbb{R}^{n\times n}$.\\
+$U$ und $V$ sind orthogonal, $S$ ist eine Diagonalmatrix.
+\subsubsection{Rezept: Singulärwertzerlegung}
+Gegeben: $A\in \mathbb{R}^{m\times n}$
+\begin{enumerate}\itemsep0pt
+\item Bestimme alle Eigenwerte $\lambda_j$ und Eigenvektoren $v_j$ der Matrix $A^\top A\in \mathbb{R}^{n\times n}$ und ordne sie \\ $\lambda_1\ge\lambda_2\ge \dots \ge \lambda_r>\lambda_{r+1}=\dots=\lambda_n=0$ mit $r\le n$
+\item Bestimme eine ONB des $\mathbb{R}^n$ aus den Eigenvektoren $v_j$ und erhalte $V=\begin{pmatrix} 
+v_1 &\dots & v_n
+\end{pmatrix} \in \mathbb{R}^{n\times n}$
+\item Die Singulärwerte sind $\sigma_j=\sqrt{\lambda_j}$ \qquad $j=1,\dots,\min\{m,n\}$
+\begin{equation*}
+S=\begin{pmatrix}
+\sigma_1 & & & 0 & \dots & 0\\
+ & \ddots & &  \vdots &  &  \vdots\\
+& & \sigma_m & 0 & \dots & 0\\
+\end{pmatrix} \in \mathbb{R}^{m\times n}
+\qquad m<n
+\end{equation*}
+\begin{equation*}
+S=\begin{pmatrix}
+\sigma_1 & & \\
+ & \ddots & \\
+& & \sigma_n \\
+0 & \dots & 0\\
+\vdots &  &  \vdots\\
+0 & \dots & 0\\
+\end{pmatrix} \in \mathbb{R}^{m\times n}
+\qquad m>n
+\end{equation*}
+\item Bestimme $u_1,\dots,u_r$ aus $u_i=\frac{1}{\sigma_j}Av_j$ für alle $j=1,\dots,r$ (alle $\sigma_j\ne 0$)
+\item Falls $r<m$ ergänze $u_1,\dots,u_r$ zu einer ONB, bzw. zu $U=\begin{pmatrix}
+u_1 & \dots & u_m
+\end{pmatrix}$
+orthogonal.
+\item $A=USV^\top$
+\end{enumerate}
+
+\subsection{Lineare Differentialgleichungen}
+\subsubsection{Lösen einer linearen Differentialgleichung}
+Gegeben: $y'(t) = \lambda y(t)$, mit $y(0) = c$\\
+Lösung: $y(t) = ce^{\lambda t}$ mit $c \in \mathbb R$\\
+\subsubsection{Lösen eines Systems linearer Differentialgleichungen}
+Gegeben: $y'(t) = Ay$, mit $y_1(0) = c_1 , ..., y_n(0) = c_n$\\ 
+Wobei $A \in \mathbb R^{nxn}, c_1, ..., c_n \in \mathbb R, y,y'\in\mathbb R^n$.\\
+Lösung:\\
+\begin{enumerate}
+	\item Eigenwerte und Eigenvektoren von $A$ bestimmen.
+	\item $\begin{pmatrix}
+	x_1(t)\\
+	\vdots\\
+	x_n(t) \\
+	\end{pmatrix}
+	= c_1e^{\lambda_1t}v_1+...+c_ne^{\lambda_nt}v_n$.
+	\item Anfangswerte einsetzen und Werte für $c_1$, bis $c_n$ bestimmen.
+\end{enumerate}
+\end{multicols*}
+% Ende der Spalten
+
+
+% Dokumentende
+% ======================================================================
+\end{document}
